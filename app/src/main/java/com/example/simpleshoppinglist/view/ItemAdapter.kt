@@ -20,8 +20,14 @@ class ItemAdapter: ListAdapter<Item, ItemAdapter.ItemViewHolder>(ItemComparator(
 
         fun bind(item: Item){
             itemTitle.text = item.name
-            itemDescription.text = item.description
             itemCheckbox.isChecked = item.checked
+
+            if (item.description.isEmpty()){
+                itemDescription.text = "";
+                itemDescription.visibility = View.GONE
+            } else {
+                itemDescription.text = item.description
+            }
         }
 
         companion object {
