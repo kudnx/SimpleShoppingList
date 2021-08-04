@@ -6,30 +6,15 @@ class MockItens {
     public fun getAll(): List<Item> {
         return listOf<Item>(
             Item(
-                name = "Chocolate",
-                description = "muitos",
+                name = "Doce de leite",
+                description = "500 gramas",
                 checked = true
             ),
             Item(
                 name = "Queijo",
-                description = "mt bom",
-                checked = true
-            ),
-            Item(
-                name = "Miojo",
-                description = "dezenas",
-                checked = true
-            ),
-            Item(
-                name = "carne",
-                description = "one",
+                description = "2",
                 checked = false
-            ),
-            Item(
-                name = "bebida",
-                description = "also one",
-                checked = false
-            ),
+            )
         )
     }
 }
