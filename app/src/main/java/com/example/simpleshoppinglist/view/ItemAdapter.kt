@@ -1,5 +1,7 @@
 package com.example.simpleshoppinglist.view
 
+import android.graphics.Paint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +29,16 @@ class ItemAdapter: ListAdapter<Item, ItemAdapter.ItemViewHolder>(ItemComparator(
                 itemDescription.visibility = View.GONE
             } else {
                 itemDescription.text = item.description
+            }
+
+            itemCheckbox.setOnClickListener {
+                if (itemCheckbox.isChecked) {
+                    itemTitle.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                    itemDescription.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                } else {
+                    itemTitle.paintFlags = 0
+                    itemDescription.paintFlags = 0
+                }
             }
         }
 
