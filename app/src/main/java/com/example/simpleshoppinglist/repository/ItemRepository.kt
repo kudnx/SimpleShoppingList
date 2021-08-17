@@ -13,4 +13,10 @@ class ItemRepository(private val dao: ItemDAO) {
     suspend fun addNewItem(item: Item){
         dao.insertItem(item)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun updateItem(checked: Boolean, id: Int){
+        dao.updateItem(checked, id)
+    }
 }

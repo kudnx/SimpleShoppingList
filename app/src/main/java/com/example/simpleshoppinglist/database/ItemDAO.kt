@@ -17,4 +17,7 @@ interface ItemDAO {
 
     @Insert
     fun insertItens(list: List<Item>)
+
+    @Query("UPDATE item SET item_checked =:pCHECKED WHERE item_id =:pID")
+    fun updateItem(pCHECKED: Boolean, pID: Int)
 }

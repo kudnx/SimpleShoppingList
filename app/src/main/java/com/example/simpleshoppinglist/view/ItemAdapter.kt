@@ -1,7 +1,6 @@
 package com.example.simpleshoppinglist.view
 
 import android.graphics.Paint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.simpleshoppinglist.R
 import com.example.simpleshoppinglist.entities.Item
 
-class ItemAdapter: ListAdapter<Item, ItemAdapter.ItemViewHolder>(ItemComparator()) {
+class ItemAdapter(val listener: RecyclerViewClickListener): ListAdapter<Item, ItemAdapter.ItemViewHolder>(ItemComparator()) {
 
     class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val itemTitle: TextView = itemView.findViewById(R.id.itemTitle)
@@ -29,6 +28,14 @@ class ItemAdapter: ListAdapter<Item, ItemAdapter.ItemViewHolder>(ItemComparator(
                 itemDescription.visibility = View.GONE
             } else {
                 itemDescription.text = item.description
+            }
+
+            if (item.checked) {
+                itemTitle.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                itemDescription.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            } else {
+                itemTitle.paintFlags = 0
+                itemDescription.paintFlags = 0
             }
 
             itemCheckbox.setOnClickListener {
@@ -58,6 +65,11 @@ class ItemAdapter: ListAdapter<Item, ItemAdapter.ItemViewHolder>(ItemComparator(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val current = getItem(position)
         holder.bind(current)
+
+        val checkbox = holder.itemView.findViewById<CheckBox>(R.id.itemCheckbox)
+        checkbox.setOnClickListener {
+            listener.onRecyclerViewItemClick(checkbox, getItem(position))
+        }
     }
 
     class ItemComparator: DiffUtil.ItemCallback<Item>() {
