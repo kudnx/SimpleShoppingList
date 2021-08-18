@@ -33,9 +33,11 @@ class ItemAdapter(val listener: RecyclerViewClickListener): ListAdapter<Item, It
             if (item.checked) {
                 itemTitle.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 itemDescription.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                itemView.setBackgroundResource(R.color.green)
             } else {
                 itemTitle.paintFlags = 0
                 itemDescription.paintFlags = 0
+                itemView.setBackgroundResource(R.color.not_so_black)
             }
 
             itemCheckbox.setOnClickListener {

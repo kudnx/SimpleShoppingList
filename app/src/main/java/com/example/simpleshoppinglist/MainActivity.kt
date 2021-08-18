@@ -47,6 +47,6 @@ class MainActivity : AppCompatActivity(), RecyclerViewClickListener {
     }
 
     override fun onRecyclerViewItemClick(view: View, item: Item) {
-        Toast.makeText(this, "$item", Toast.LENGTH_LONG).show()
+        itemViewModel.toggleItemStatus(item)
     }
 }

@@ -15,4 +15,8 @@ class ItemViewModel(private val repository: ItemRepository): ViewModel() {
     fun addItem(item: Item) = viewModelScope.launch(Dispatchers.IO) {
         repository.addNewItem(item)
     }
+
+    fun toggleItemStatus(item: Item) = viewModelScope.launch(Dispatchers.IO) {
+        repository.toggleItemStatus(!item.checked, item.id)
+    }
 }
