@@ -1,6 +1,7 @@
 package com.example.simpleshoppinglist.view
 
 import android.graphics.Paint
+import android.support.v4.media.MediaBrowserCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.simpleshoppinglist.R
+import com.example.simpleshoppinglist.databinding.ItemBinding
 import com.example.simpleshoppinglist.entities.Item
+import com.example.simpleshoppinglist.repository.ItemRepository
 
 class ItemAdapter(val listener: RecyclerViewClickListener): ListAdapter<Item, ItemAdapter.ItemViewHolder>(ItemComparator()) {
 
@@ -64,6 +67,10 @@ class ItemAdapter(val listener: RecyclerViewClickListener): ListAdapter<Item, It
         return ItemViewHolder.create(parent)
     }
 
+    public override fun getItem(position: Int): Item {
+        return super.getItem(position)
+    }
+
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val current = getItem(position)
         holder.bind(current)
@@ -82,6 +89,5 @@ class ItemAdapter(val listener: RecyclerViewClickListener): ListAdapter<Item, It
         override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
             return  oldItem.id == newItem.id
         }
-
     }
 }

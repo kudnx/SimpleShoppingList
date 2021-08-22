@@ -19,4 +19,8 @@ class ItemViewModel(private val repository: ItemRepository): ViewModel() {
     fun toggleItemStatus(item: Item) = viewModelScope.launch(Dispatchers.IO) {
         repository.toggleItemStatus(!item.checked, item.id)
     }
+
+    fun deleteItem(id: Int) = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteItem(id)
+    }
 }

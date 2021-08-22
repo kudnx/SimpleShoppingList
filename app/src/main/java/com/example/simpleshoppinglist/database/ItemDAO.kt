@@ -20,4 +20,7 @@ interface ItemDAO {
 
     @Query("UPDATE item SET item_checked =:pCHECKED WHERE item_id =:pID")
     fun updateItem(pCHECKED: Boolean, pID: Int)
+
+    @Query("DELETE FROM item WHERE item_id =:pID")
+    fun deleteItem(pID: Int)
 }

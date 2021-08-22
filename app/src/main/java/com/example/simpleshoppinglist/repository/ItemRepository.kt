@@ -19,4 +19,10 @@ class ItemRepository(private val dao: ItemDAO) {
     suspend fun toggleItemStatus(checked: Boolean, id: Int){
         dao.updateItem(checked, id)
     }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    fun deleteItem(id: Int) {
+        dao.deleteItem(id)
+    }
 }
